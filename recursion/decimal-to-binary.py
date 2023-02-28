@@ -10,11 +10,19 @@ def to_binary(num):
     return f'{to_binary(num // 2)}' + f'{num % 2}'
 
 
+def to_binary2(num):
+    if num == 0:
+        return 0
+    else:
+        return num % 2 + 10 * to_binary2(int(num / 2))
+
+
 num = 13
 from_calculator = 1101
 result = to_binary(num)
 
 print(result)
 print('valid:', f'{from_calculator}' == result)
-# 1x23 + 1x22 + 0x21 + 1x20
+print(to_binary2(num))
+# 1x2^3 + 1x2^2 + 0x2^1 + 1x2^0
 # 1x8 + 1x4 + 0x2 + 1x1 = 8 + 4 + 0 + 1 = 13

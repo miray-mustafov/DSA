@@ -5,12 +5,14 @@
 
 
 def to_binary(num):
+    assert int(num) == num, 'The parameter must be an integer'
     if num == 1:
         return 1
     return f'{to_binary(num // 2)}' + f'{num % 2}'
 
 
 def to_binary2(num):
+    assert int(num) == num, 'The parameter must be an integer'
     if num == 0:
         return 0
     else:

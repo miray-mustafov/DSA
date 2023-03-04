@@ -22,5 +22,14 @@ def fibonacci(n):
     return fibonacci(n - 1) + fibonacci(n - 2)
 
 
-print(fib_sequence(7))
-print(fibonacci(7))
+def all_fibonacci(n):
+    sequence = ''
+    for i in range(1, n+1):
+        sequence += f'{i}:, {fibonacci(i)} '
+    return sequence
+
+n = 7
+
+print(fib_sequence(n))
+print(fibonacci(n))
+print(all_fibonacci(n))

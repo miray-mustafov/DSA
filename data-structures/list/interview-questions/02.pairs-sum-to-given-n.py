@@ -10,10 +10,9 @@ def get_pairs(arr, n):
     # slower arr = [x for i, x in enumerate(arr) if x not in arr[:i]]
 
     for i in range(len(arr)):
-        current_num = arr[i]
         for j in range(i + 1, len(arr)):
-            if current_num + arr[j] == n:
-                pairs.append((current_num, arr[j]))
+            if arr[i] + arr[j] == n:
+                pairs.append((arr[i], arr[j]))
 
     return pairs
 
@@ -21,4 +20,7 @@ def get_pairs(arr, n):
 arr = [2, 1, 3, 0, 3, 4, 5]
 n = 6
 pairs = get_pairs(arr, n)
+nums = [2, 4, 2]
+pairs2 = get_pairs(nums, n)
 print(pairs)  # [(1, 5), (2, 4)]
+print(pairs2)  # [(1, 5), (2, 4)]

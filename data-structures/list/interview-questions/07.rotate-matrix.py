@@ -1,5 +1,6 @@
 """Given matrix with numbers: rotate the matrix(square) to the right 90 degrees
-u can extend later for left or more degrees"""
+u can extend later for left or more degrees
+hints: recursion, layers"""
 
 
 def print_matrix(matrix):
@@ -8,17 +9,19 @@ def print_matrix(matrix):
     print()
 
 
-def rotate_matrix(matrix):
-    for i in range(len(matrix) - 1):
-        top = matrix[0][i]
-        right = matrix[i][-1]
-        bot = matrix[-1][-1 - i]
-        left = matrix[-1 - i][0]
+def rotate_matrix(matrix, layer=0):
+    for i in range(layer, len(matrix) - 1 - layer):
+        top = matrix[layer][i]
+        right = matrix[i][-1 - layer]
+        bot = matrix[-1 - layer][-1 - i]
+        left = matrix[-1 - i][layer]
 
-        matrix[i][-1] = top  # right becomes top
-        matrix[-1][-1 - i] = right  # bot becomes right
-        matrix[-1 - i][0] = bot  # left becomes bot
-        matrix[0][i] = left  # top becomes left
+        matrix[i][-1 - layer] = top  # right becomes top
+        matrix[-1 - layer][-1 - i] = right  # bot becomes right
+        matrix[-1 - i][layer] = bot  # left becomes bot
+        matrix[layer][i] = left  # top becomes left
+    if len(matrix) - layer > 3:
+        rotate_matrix(matrix, layer + 1)
 
 
 matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]

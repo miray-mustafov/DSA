@@ -52,7 +52,7 @@ class SLinkedList:
                 newNode.next = self.head
                 self.head = newNode
             elif location == -1:
-                newNode.next = None
+                newNode.next = None  # no need its defaultly None
                 self.tail.next = newNode
                 self.tail = newNode
             else:
@@ -131,6 +131,7 @@ class SLinkedList:
 
 
 singlyLinkedList = SLinkedList()
+
 # singlyLinkedList.insertSLL(1, 1)
 # singlyLinkedList.insertSLL(2, 3)
 # singlyLinkedList.insertSLL(3, 1)
@@ -150,6 +151,7 @@ singlyLinkedList.insertSLL(2, 1)
 singlyLinkedList.insertSLL(3, 1)
 singlyLinkedList.insertSLL(4, 1)
 singlyLinkedList.insertSLL(5, -1)
+
 
 print([node.value for node in singlyLinkedList])
 # singlyLinkedList.deleteEntireSLL()

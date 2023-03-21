@@ -23,4 +23,21 @@ def preorder_traversal(tree_node):
     preorder_traversal(tree_node.left_child)
     preorder_traversal(tree_node.right_child)
 
+def inorder_traversal(tree_node):
+    if tree_node.left_child:
+        inorder_traversal(tree_node.left_child)
+        inorder_traversal(tree_node.right_child)
+        print(tree_node.left_child.data)
+        print(tree_node.right_child.data)
+
+
+
+print("Preorder traversal:")
 preorder_traversal(my_binary_tree)
+
+print("\nInorder traversal:")
+inorder_traversal(my_binary_tree)
+
+
+
+

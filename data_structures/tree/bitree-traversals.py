@@ -87,13 +87,13 @@ def lvl_deque(tree_node):
                 customQueue.append(root.right_child)
 
 
-my_binary_tree = Node("Pet")
+my_binary_tree = Node("Pets")
 
 my_binary_tree.left_child = Node('Cat')
 my_binary_tree.right_child = Node('Dog')
 
-my_binary_tree.left_child.left_child = Node('Egyptian cat')
-my_binary_tree.left_child.right_child = Node('Persian cat')
+my_binary_tree.left_child.left_child = Node('Egyptian')
+my_binary_tree.left_child.right_child = Node('Persian')
 
 my_binary_tree.right_child.left_child = Node('Chau Chau')
 my_binary_tree.right_child.right_child = Node('Pekines')

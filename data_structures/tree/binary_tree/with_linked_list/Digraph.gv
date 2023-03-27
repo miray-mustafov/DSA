@@ -1,0 +1,23 @@
+digraph {
+	Pets
+	Pets -> Cat
+	Cat
+	Cat -> Egyptian
+	Egyptian
+	Egyptian -> "New Left"
+	"New Left"
+	Egyptian -> "New Right"
+	"New Right"
+	Cat -> Persian
+	Persian
+	Persian -> Blue
+	Blue
+	Persian -> Black
+	Black
+	Pets -> Dog
+	Dog
+	Dog -> "Chau Chau"
+	"Chau Chau"
+	Dog -> Pekines
+	Pekines
+}

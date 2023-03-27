@@ -5,24 +5,24 @@ def preorder_traversal(tree_node):
     if not tree_node:
         return
     print(tree_node.data)
-    preorder_traversal(tree_node.left_child)
-    preorder_traversal(tree_node.right_child)
+    preorder_traversal(tree_node.left)
+    preorder_traversal(tree_node.right)
 
 
 def inorder_traversal(tree_node):
     if not tree_node:
         return
-    inorder_traversal(tree_node.left_child)
+    inorder_traversal(tree_node.left)
     print(tree_node.data)
-    inorder_traversal(tree_node.right_child)
+    inorder_traversal(tree_node.right)
 
 
 def postorder_traversal(tree_node):
     if not tree_node:
         return
 
-    postorder_traversal(tree_node.left_child)
-    postorder_traversal(tree_node.right_child)
+    postorder_traversal(tree_node.left)
+    postorder_traversal(tree_node.right)
     print(tree_node.data)
 
 
@@ -33,8 +33,8 @@ def levelorder_traversal_defaultdict(tree_node):
         if not node:
             return
         level_nodes_dict[level].append(node.data)
-        dfs(node.left_child, level + 1)
-        dfs(node.right_child, level + 1)
+        dfs(node.left, level + 1)
+        dfs(node.right, level + 1)
 
     dfs(tree_node, 0)
     [print(key,':', [el for el in x]) for key, x in level_nodes_dict.items()]
@@ -50,11 +50,11 @@ def levelorder_traversal(tree_node):
         while not (customQueue.isEmpty()):
             root = customQueue.dequeue()
             print(root.value.data)
-            if root.value.left_child:
-                customQueue.enqueue(root.value.left_child)
+            if root.value.left:
+                customQueue.enqueue(root.value.left)
 
-            if root.value.right_child:
-                customQueue.enqueue(root.value.right_child)
+            if root.value.right:
+                customQueue.enqueue(root.value.right)
 
 
 def lvl_deque(tree_node):
@@ -66,11 +66,11 @@ def lvl_deque(tree_node):
         while customQueue:
             root = customQueue.popleft()
             print(root.data)
-            if root.left_child:
-                customQueue.append(root.left_child)
+            if root.left:
+                customQueue.append(root.left)
 
-            if root.right_child:
-                customQueue.append(root.right_child)
+            if root.right:
+                customQueue.append(root.right)
 
 # my_binary_tree = Node("Pets")
 #

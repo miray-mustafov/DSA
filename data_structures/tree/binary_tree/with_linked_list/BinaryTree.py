@@ -1,7 +1,6 @@
-from graphviz import Digraph
-
 from collections import deque
 from data_structures.tree.binary_tree.with_linked_list.bitree_traversals import levelorder_traversal_defaultdict
+from data_structures.tree.helpers import vertical_view
 
 """
 this is my code for binary tree. Can you give me a 
@@ -9,32 +8,11 @@ function that vizualizes VERTICALLY my_binary_tree
 """
 
 
-def vertical_view(root_node):
-    if not root_node.left_child or not root_node.right_child:
-        return print("tree empty")
-    dot = Digraph()
-
-    # helper function to draw each node and its children
-    def draw_node(node):
-        if not node:
-            return
-        dot.node(node.data)
-        if node.left_child:
-            dot.edge(node.data, node.left_child.data)
-            draw_node(node.left_child)
-        if node.right_child:
-            dot.edge(node.data, node.right_child.data)
-            draw_node(node.right_child)
-
-    draw_node(root_node)
-    dot.render(view=True)
-
-
 class Node:
     def __init__(self, data):
         self.data = data
-        self.left_child = None
-        self.right_child = None
+        self.left = None
+        self.right = None
 
     def __repr__(self):
         return "n" + self.data
@@ -48,11 +26,11 @@ def searchinBT(tree_node, node_data):  # its level order traversal
         cur_node = customQueue.popleft()
         if node_data == cur_node.data:
             return cur_node
-        if cur_node.left_child:
-            customQueue.append(cur_node.left_child)
+        if cur_node.left:
+            customQueue.append(cur_node.left)
 
-        if cur_node.right_child:
-            customQueue.append(cur_node.right_child)
+        if cur_node.right:
+            customQueue.append(cur_node.right)
     return 'Not found'
 
 
@@ -62,16 +40,16 @@ def insert1by1BT(tree_node, new_node):
     customQueue = deque([tree_node])
     while customQueue:
         cur_node = customQueue.popleft()
-        if cur_node.left_child:
-            customQueue.append(cur_node.left_child)
+        if cur_node.left:
+            customQueue.append(cur_node.left)
         else:
-            cur_node.left_child = new_node
+            cur_node.left = new_node
             return print(f"{new_node} left child added")
 
-        if cur_node.right_child:
-            customQueue.append(cur_node.right_child)
+        if cur_node.right:
+            customQueue.append(cur_node.right)
         else:
-            cur_node.right_child = new_node
+            cur_node.right = new_node
             return print(f"{new_node} right child added")
 
 
@@ -81,10 +59,10 @@ def getdeepestNode(root_node):
     customQueue = deque([root_node])
     while customQueue:
         root = customQueue.popleft()
-        if root.left_child:
-            customQueue.append(root.left_child)
-        if root.right_child:
-            customQueue.append(root.right_child)
+        if root.left:
+            customQueue.append(root.left)
+        if root.right:
+            customQueue.append(root.right)
     return root
 
 
@@ -98,18 +76,18 @@ def delete_deepestNode(root_node, deepest_node):
     while customQueue:
         root = customQueue.popleft()
 
-        if root.right_child:
-            if root.right_child == deepest_node:
-                root.right_child = None
+        if root.right:
+            if root.right == deepest_node:
+                root.right = None
                 return
             else:
-                customQueue.append(root.right_child)
-        if root.left_child:
-            if root.left_child == deepest_node:
-                root.left_child = None
+                customQueue.append(root.right)
+        if root.left:
+            if root.left == deepest_node:
+                root.left = None
                 return
             else:
-                customQueue.append(root.left_child)
+                customQueue.append(root.left)
 
 
 def deleteNode(root_node, node_value):
@@ -126,35 +104,35 @@ def deleteNode(root_node, node_value):
             root.data = dNode.data
             delete_deepestNode(root, dNode)
             return print(f"{node_value} was deleted!")
-        if root.left_child:
-            customQueue.append(root.left_child)
-        if root.right_child:
-            customQueue.append(root.right_child)
+        if root.left:
+            customQueue.append(root.left)
+        if root.right:
+            customQueue.append(root.right)
 
     return print('Wrong node_value specified!')
 
 
 def deleteBT(root_main):
-    root_main.left_child = None
-    root_main.right_child = None
+    root_main.left = None
+    root_main.right = None
     root_main.data = None
     return print("Root main deleted!")
 
 
 my_binary_tree = Node("Pets")
 
-my_binary_tree.left_child = Node('Cat')
-my_binary_tree.right_child = Node('Dog')
+my_binary_tree.left = Node('Cat')
+my_binary_tree.right = Node('Dog')
 
-my_binary_tree.left_child.left_child = Node('Egyptian')
+my_binary_tree.left.left = Node('Egyptian')
 persian = Node('Persian')
-my_binary_tree.left_child.right_child = persian
+my_binary_tree.left.right = persian
 
-persian.left_child = Node('Blue')
-persian.right_child = Node('Black')
+persian.left = Node('Blue')
+persian.right = Node('Black')
 
-my_binary_tree.right_child.left_child = Node('Chau Chau')
-my_binary_tree.right_child.right_child = Node('Pekines')
+my_binary_tree.right.left = Node('Chau Chau')
+my_binary_tree.right.right = Node('Pekines')
 
 print()
 

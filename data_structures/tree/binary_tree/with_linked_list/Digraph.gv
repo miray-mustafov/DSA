@@ -4,10 +4,6 @@ digraph {
 	Cat
 	Cat -> Egyptian
 	Egyptian
-	Egyptian -> "New Left"
-	"New Left"
-	Egyptian -> "New Right"
-	"New Right"
 	Cat -> Persian
 	Persian
 	Persian -> Blue

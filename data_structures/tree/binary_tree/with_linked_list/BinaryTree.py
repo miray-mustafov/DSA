@@ -156,11 +156,8 @@ persian.right_child = Node('Black')
 my_binary_tree.right_child.left_child = Node('Chau Chau')
 my_binary_tree.right_child.right_child = Node('Pekines')
 
-insert1by1BT(my_binary_tree, Node("New Left")),
-insert1by1BT(my_binary_tree, Node("New Right")),
 print()
-# deleteNode(my_binary_tree, 'Cat')
 
 levelorder_traversal_defaultdict(my_binary_tree)
-deleteBT(my_binary_tree)
+# deleteBT(my_binary_tree)
 vertical_view(my_binary_tree)

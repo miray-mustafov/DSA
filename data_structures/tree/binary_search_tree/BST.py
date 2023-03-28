@@ -8,6 +8,9 @@ class BSTNode:
         self.left = None
         self.right = None
 
+    def __repr__(self):
+        return str(self.data)
+
 
 def preOrderTraversal(root_node):
     if not root_node:
@@ -75,6 +78,46 @@ def searchinBST(root_node, node_val):
         searchinBST(root_node.right, node_val)
 
 
+def minValueNode(bstNode):
+    current = bstNode
+    while current.left:
+        current = current.left
+    return current
+
+
+def deleteinBST(root_node, node_val):
+    if not root_node:
+        return root_node
+
+    if node_val < root_node.data:
+        root_node.left = deleteinBST(root_node.left, node_val)
+        a = 5
+    elif node_val > root_node.data:
+        root_node.left = deleteinBST(root_node.right, node_val)
+        a = 6
+    else:
+        if root_node.left is None:
+            temp = root_node.right
+            root_node = None
+            return temp
+
+        if root_node.right is None:
+            temp = root_node.left
+            root_node = None
+            return temp
+
+        temp = minValueNode(root_node.right)
+        root_node.data = temp.data
+        root_node.right = deleteinBST(root_node.right, temp.data)
+    return root_node
+
+
+def deleteentireBST(root_node):
+    root_node.left = None
+    root_node.right = None
+    root_node.data = None
+
+
 my_BST = BSTNode(70)
 
 insertinBST(my_BST, 50)
@@ -84,10 +127,7 @@ insertinBST(my_BST, 60)
 insertinBST(my_BST, 80)
 insertinBST(my_BST, 100)
 insertinBST(my_BST, 20)
-insertinBST(my_BST, 40)
 
-searchinBST(my_BST, 110)
-searchinBST(my_BST, 21)
-searchinBST(my_BST, 40)
+deleteinBST(my_BST, 30)
 
-# vertical_view(my_BST)
+vertical_view(my_BST)

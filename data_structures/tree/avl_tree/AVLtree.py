@@ -9,10 +9,10 @@ def levelOrderTraversal(root_node):
         customQueue = deque([root_node])
         while customQueue:
             root = customQueue.popleft()
-            print(root.value.data)
-            if root.value.left is not None:
+            print(root.data, root.height)
+            if root.left is not None:
                 customQueue.append(root.left)
-            if root.value.right is not None:
+            if root.right is not None:
                 customQueue.append(root.right)
 
 
@@ -37,19 +37,6 @@ class AVLnode:
 
     def __repr__(self):
         return str(self.data)
-
-
-def getHeight(root_node):
-    if not root_node:
-        return 0
-    return root_node.height
-
-
-def getBalance(root_node):
-    if not root_node:
-        return 0
-    return getHeight(root_node.left) - getHeight(root_node.right)
-    # return abs(getHeight(root_node.left) - getHeight(root_node.right))
 
 
 def rightRotate(disbalancedNode):
@@ -98,11 +85,89 @@ def insertNode(root_node, node_val):
     return root_node
 
 
-myAVLtree = AVLnode(5)
-myAVLtree = insertNode(myAVLtree, 10)
-myAVLtree = insertNode(myAVLtree, 15)
+def getHeight(root_node):
+    if not root_node:
+        return 0
+    return root_node.height
+
+
+def getBalance(root_node):
+    if not root_node:
+        return 0
+    return getHeight(root_node.left) - getHeight(root_node.right)
+    # return abs(getHeight(root_node.left) - getHeight(root_node.right))
+
+
+def getMinValue(root_node):
+    if not root_node or not root_node.left:
+        return root_node
+    return getMinValue(root_node.left)
+
+
+def deleteNode(root_node, node_val):
+    if not root_node:
+        return root_node
+
+    if node_val < root_node.data:
+        root_node.left = deleteNode(root_node.left, node_val)
+    elif node_val > root_node.data:
+        root_node.right = deleteNode(root_node.right, node_val)
+    else:
+        if root_node.left is None:
+            temp = root_node.right
+            root_node = None
+            return temp
+
+        if root_node.right is None:
+            temp = root_node.left
+            root_node = None
+            return temp
+
+        temp = getMinValue(root_node.right)
+        root_node.data = temp.data
+        root_node.right = deleteNode(root_node.right, temp.data)
+
+    # !!!!!!!!!!!!!
+    root_node.height = 1 + max(getHeight(root_node.left), getHeight(root_node.right))
+    balance = getBalance(root_node)
+
+    if balance > 1 and getBalance(root_node.left) >= 0:
+        return rightRotate(root_node)
+    if balance < -1 and getBalance(root_node.right) <= 0:
+        return leftRotate(root_node)
+    if balance > 1 and getBalance(root_node.left) < 0:
+        root_node.left = leftRotate(root_node.left)
+        return rightRotate(root_node)
+    if balance < -1 and getBalance(root_node.right) > 0:
+        root_node.right = rightRotate(root_node.right)
+        return leftRotate(root_node)
+
+    return root_node
+
+def deleteAVL(root_node):
+    root_node.left = None
+    root_node.right = None
+    root_node.data = None
+
+myAVLtree = AVLnode(50)
+myAVLtree = insertNode(myAVLtree, 70)
+myAVLtree = insertNode(myAVLtree, 80)
+myAVLtree = insertNode(myAVLtree, 40)
+myAVLtree = insertNode(myAVLtree, 60)
+myAVLtree = insertNode(myAVLtree, 30)
 myAVLtree = insertNode(myAVLtree, 20)
-# insertNode(myAVLtree, 12)
-# insertNode(myAVLtree, 13)
+myAVLtree = insertNode(myAVLtree, 10)
+myAVLtree = insertNode(myAVLtree, 35)
+myAVLtree = insertNode(myAVLtree, 45)
+myAVLtree = insertNode(myAVLtree, 25)
+myAVLtree = insertNode(myAVLtree, 65)
+myAVLtree = insertNode(myAVLtree, 55)
+
+myAVLtree = deleteNode(myAVLtree, 80)
+myAVLtree = deleteNode(myAVLtree, 55)
+myAVLtree = deleteNode(myAVLtree, 60)
+myAVLtree = deleteNode(myAVLtree, 65)
+# myAVLtree = deleteNode(myAVLtree, 70)
+
 
 vertical_view(myAVLtree)

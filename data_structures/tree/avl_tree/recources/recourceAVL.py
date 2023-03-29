@@ -127,7 +127,11 @@ def deleteNode(rootNode, nodeValue):
         temp = getMinValueNode(rootNode.rightChild)
         rootNode.data = temp.data
         rootNode.rightChild = deleteNode(rootNode.rightChild, temp.data)
+
+    # !!!!!!!!!!!!!
+    rootNode.height = 1 + max(getHeight(rootNode.left), getHeight(rootNode.right))
     balance = getBalance(rootNode)
+
     if balance > 1 and getBalance(rootNode.leftChild) >= 0:
         return rightRotate(rootNode)
     if balance < -1 and getBalance(rootNode.rightChild) <= 0:

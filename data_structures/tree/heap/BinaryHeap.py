@@ -42,11 +42,79 @@ class BinaryHeap:
         self.heapify(self.heapSize, heap_type)
         print(f"{node_value} inserted.")
 
+    def heapifyExtract(self, index, heap_type):
+        leftIndex = index * 2
+        rightIndex = index * 2 + 1
+        swapChild = 0
 
-myHeap = BinaryHeap(5)
-myHeap.insertNode(4,heap_type='Max')
-myHeap.insertNode(2,heap_type='Max')
-myHeap.insertNode(1,heap_type='Max')
-myHeap.insertNode(5,hea p_type='Max')
+        if self.heapSize < leftIndex:
+            return
+        elif self.heapSize == leftIndex:
+            if heap_type == "Min":
+                if self.customList[index] > self.customList[leftIndex]:
+                    temp = self.customList[index]
+                    self.customList[index] = self.customList[leftIndex]
+                    self.customList[leftIndex] = temp
+                return
+            else:
+                if self.customList[index] < self.customList[leftIndex]:
+                    temp = self.customList[index]
+                    self.customList[index] = self.customList[leftIndex]
+                    self.customList[leftIndex] = temp
+                return
+
+        else:
+            if heap_type == "Min":
+                if self.customList[leftIndex] < self.customList[rightIndex]:
+                    swapChild = leftIndex
+                else:
+                    swapChild = rightIndex
+                if self.customList[index] > self.customList[swapChild]:
+                    temp = self.customList[index]
+                    self.customList[index] = self.customList[swapChild]
+                    self.customList[swapChild] = temp
+            elif heap_type == "Max":
+                if self.customList[leftIndex] > self.customList[rightIndex]:
+                    swapChild = leftIndex
+                else:
+                    swapChild = rightIndex
+                if self.customList[index] < self.customList[swapChild]:
+                    temp = self.customList[index]
+                    self.customList[index] = self.customList[swapChild]
+                    self.customList[swapChild] = temp
+            else:
+                print("Wrong heap_type passed!")
+                return
+        self.heapifyExtract(swapChild, heap_type)
+
+    def extractNode(self, heap_type):  # Only root_node can be extracted in BHeap
+        if self.heapSize == 0:
+            return  # Tree empty!
+
+        extractedNode = self.customList[1]
+        self.customList[1] = self.customList[self.heapSize]  # Swap lastly inserted node with root_node
+        self.customList[self.heapSize] = None  # Delete last node (that had root_nodes value)
+        self.heapSize -= 1
+        self.heapifyExtract(1, heap_type)  # Reorder the tree to fullfill the heap rules
+        return extractedNode
+
+    def deleteHeap(self):
+        self.customList = None
+
+
+myHeap = BinaryHeap(10)
+myHeap.insertNode(5, heap_type='Min')
+myHeap.insertNode(8000, heap_type='Min')
+myHeap.insertNode(10, heap_type='Min')
+myHeap.insertNode(20, heap_type='Min')
+myHeap.insertNode(30, heap_type='Min')
+myHeap.insertNode(40, heap_type='Min')
+myHeap.insertNode(50, heap_type='Min')
+# myHeap.insertNode(60, heap_type='Min')
+# myHeap.insertNode(70, heap_type='Min')
+
+myHeap.levelOrderTraversal()
+print()
+# print('extracted: ' , myHeap.extractNode(heap_type='Max'))
 myHeap.levelOrderTraversal()
 

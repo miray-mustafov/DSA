@@ -39,15 +39,15 @@ def postOrderTraversal(root_node):
 def levelOrderTraversal(root_node):
     if not root_node:
         return
-    else:
-        customQueue = deque([root_node])
-        while customQueue:
-            root = customQueue.popleft()
-            print(root.value.data)
-            if root.value.left is not None:
-                customQueue.append(root.left)
-            if root.value.right is not None:
-                customQueue.append(root.right)
+
+    customQueue = deque([root_node])
+    while customQueue:
+        root = customQueue.popleft()
+        print(root.data)
+        if root.left:
+            customQueue.append(root.left)
+        if root.right:
+            customQueue.append(root.right)
 
 
 def insertinBST(root_node, node_val):

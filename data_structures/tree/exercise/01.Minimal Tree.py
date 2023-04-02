@@ -36,7 +36,7 @@ sortedArray = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 sortedArray2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 my_tree = minimalTree(sortedArray)
-vertical_view(my_tree)
-
 my_tree2 = minimalTree(sortedArray2)
+
+vertical_view(my_tree)
 vertical_view(my_tree2)

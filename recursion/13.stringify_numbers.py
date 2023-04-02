@@ -19,7 +19,7 @@ obj = {
     "num": 1,
     "test": [],
     "data": {
-        "val": 4,
+        "data": 4,
         "info": {
             "isRight": True,
             "random": 66
@@ -32,7 +32,7 @@ print(obj)
 print(stringified_obj)
 #    {'num': '1',
 #         'test': [],
-#         'data': {'val': '4',
+#         'data': {'data': '4',
 #                  'info': {'isRight': True, 'random': '66'}
 #                  }
 #         }

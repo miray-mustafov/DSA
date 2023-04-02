@@ -16,7 +16,7 @@ def collectStrings(obj):
 my_obj = {
     "stuff": 'foo',
     "data": {
-        "val": {
+        "data": {
             "thing": {
                 "info": 'bar',
                 "moreInfo": {

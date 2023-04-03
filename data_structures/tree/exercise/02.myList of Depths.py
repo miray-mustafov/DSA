@@ -14,8 +14,8 @@ class LinkedList:
         else:
             self.next.add(val)
 
-    def __str__(self):
-        return "({val})".format(val=self.val) + str(self.next)
+    def __repr__(self):
+        return f"({self.val})" + str(self.next)
 
 
 class BinaryTree:
@@ -66,10 +66,10 @@ def traverse_quee(tree_queue, custDict, step=1):
         step = len(tree_queue)
 
     linked_list = LinkedList(tree_queue.popleft())
-    for _ in range(step-1):
+    for _ in range(step - 1):
         linked_list.add(tree_queue.popleft())
 
-    key = list(custDict.keys())[-1]+1
+    key = list(custDict.keys())[-1] + 1
     custDict[key] = linked_list
     return traverse_quee(tree_queue, custDict, step * 2)
 

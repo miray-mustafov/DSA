@@ -3,10 +3,16 @@ class TrieNode:
         self.children = {}
         self.endOfString = False
 
+    def __repr__(self):
+        return str(self.children)
+
 
 class Trie:
     def __init__(self):
         self.root = TrieNode()
+
+    def __repr__(self):
+        return str(self.root)
 
     def insertString(self, word):
         currentNode = self.root
@@ -31,8 +37,37 @@ class Trie:
             return True
         return False  # the case search(Ap) in App
 
+def deleteString(trie, word, index):
+    ch = word[index]
+    currentNode = trie.children.get(ch)
+    canThisNodeBeDeleted = False
+
+    if len(currentNode.children) > 1:
+        deleteString(currentNode, word, index + 1)
+        return False
+
+    if index == len(word) - 1:
+        if len(currentNode.children) >= 1:
+            currentNode.endOfString = False
+            return False
+        else:
+            trie.children.pop(ch)
+            return True
+
+    if currentNode.endOfString == True:
+        deleteString(currentNode, word, index + 1)
+        return False
+
+    canThisNodeBeDeleted = deleteString(currentNode, word, index + 1)
+    if canThisNodeBeDeleted == True:
+        trie.children.pop(ch)
+        return True
+    else:
+        return False
 
 myTrie = Trie()
-myTrie.insertString("App")
-myTrie.insertString("Appl")
-print(myTrie.searchString('Ap'))  # False
+myTrie.insertString("API")
+myTrie.insertString("APPLЕ")
+
+deleteString(myTrie.root, 'API', 0)
+print(myTrie)

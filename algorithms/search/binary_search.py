@@ -12,6 +12,8 @@ def binarySearch(arr, value):
         else:
             start = middle + 1
         middle = math.floor((start + end) / 2)
+        if start > end:
+            return 'Not found'
     return middle
 
 

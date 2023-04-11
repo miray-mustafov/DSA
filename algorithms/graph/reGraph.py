@@ -1,6 +1,8 @@
 class Graph:
-    def __init__(self):
-        self.adjacency_list = {}
+    def __init__(self, adjacency_list=None):
+        if not adjacency_list:
+            adjacency_list = {}
+        self.adjacency_list = adjacency_list
 
     def add_vertex(self, vertex):
         if vertex not in self.adjacency_list.keys():
@@ -38,6 +40,28 @@ class Graph:
             del self.adjacency_list[vertex]
             return True
         return False
+
+    def bfs(self, vertex):
+        visited = [vertex]
+        queue = [vertex]
+        while queue:
+            deVertex = queue.pop(0)
+            print(deVertex)
+            for adjacentVertex in self.adjacency_list[deVertex]:
+                if adjacentVertex not in visited:
+                    visited.append(adjacentVertex)
+                    queue.append(adjacentVertex)
+
+    def dfs(self, vertex):
+        visited = [vertex]
+        stack = [vertex]
+        while stack:
+            popVertex = stack.pop()
+            print(popVertex)
+            for adjacentVertex in self.adjacency_list[popVertex]:
+                if adjacentVertex not in visited:
+                    visited.append(adjacentVertex)
+                    stack.append(adjacentVertex)
 
 
 my_graph = Graph()

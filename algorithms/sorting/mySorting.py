@@ -49,7 +49,7 @@ def bucketSort(arr):
     return arr
 
 
-# --------------------------------------------
+# quick sort--------------------------------------------
 def pivot(my_list, pivot_indx, end_indx):
     swap_index = pivot_indx
     for i in range(pivot_indx + 1, end_indx + 1):
@@ -70,6 +70,9 @@ def quick_sort_helper(my_list, left, right):
 
 def quick_sort(my_list):
     return quick_sort_helper(my_list, 0, len(my_list) - 1)
+
+
+# --------------------------------------------
 
 
 arr = [2, 9, 5, 7, 1, 4, 3, 6, 8]

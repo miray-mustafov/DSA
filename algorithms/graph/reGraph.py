@@ -1,8 +1,8 @@
+from collections import defaultdict
+
 class Graph:
-    def __init__(self, adjacency_list=None):
-        if not adjacency_list:
-            adjacency_list = {}
-        self.adjacency_list = adjacency_list
+    def __init__(self):
+        self.adjacency_list = defaultdict(list)
 
     def add_vertex(self, vertex):
         if vertex not in self.adjacency_list.keys():

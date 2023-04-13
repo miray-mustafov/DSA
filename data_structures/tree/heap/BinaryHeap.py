@@ -4,6 +4,9 @@ class BinaryHeap:
         self.customList = [None] * self.maxSize
         self.heapSize = 0  # maybe similar to last_used_index
 
+    def print_list(self):
+        print(self.customList)
+
     def peek(self):
         if self.customList[1]:
             return self.customList[1]
@@ -112,9 +115,8 @@ myHeap.insertNode(40, heap_type='Min')
 myHeap.insertNode(50, heap_type='Min')
 # myHeap.insertNode(60, heap_type='Min')
 # myHeap.insertNode(70, heap_type='Min')
-
-myHeap.levelOrderTraversal()
 print()
-# print('extracted: ' , myHeap.extractNode(heap_type='Max'))
 myHeap.levelOrderTraversal()
+myHeap.print_list()
 
+# print('extracted: ' , myHeap.extractNode(heap_type='Max'))

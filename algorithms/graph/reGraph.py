@@ -1,4 +1,5 @@
-from collections import defaultdict
+from collections import defaultdict, deque
+
 
 class Graph:
     def __init__(self):
@@ -43,9 +44,9 @@ class Graph:
 
     def bfs(self, vertex):
         visited = [vertex]
-        queue = [vertex]
+        queue = deque([vertex])
         while queue:
-            deVertex = queue.pop(0)
+            deVertex = queue.popleft()
             print(deVertex)
             for adjacentVertex in self.adjacency_list[deVertex]:
                 if adjacentVertex not in visited:
@@ -75,6 +76,7 @@ my_graph.add_edge("A", "D")
 my_graph.add_edge("B", "C")
 my_graph.add_edge("C", "D")
 my_graph.print_graph()
-my_graph.remove_vertex("A")
-print("After remove..")
-my_graph.print_graph()
+my_graph.bfs('A')
+# my_graph.remove_vertex("A")
+# print("After remove..")
+# my_graph.print_graph()

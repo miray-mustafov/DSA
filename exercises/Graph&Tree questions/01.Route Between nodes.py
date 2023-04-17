@@ -1,4 +1,3 @@
-"""Single Source Shortest Path"""
 from collections import deque
 
 
@@ -8,26 +7,34 @@ class Graph:
             gdict = {}
         self.gdict = gdict
 
-    def bfs(self, start, end):
+    def addEdge(self, vertex, edge):
+        self.gdict[vertex].append(edge)
+
+    def checkRoute(self, start, end):
         queue = deque([start])
         while queue:
             path = queue.popleft()
             node = path[-1]
             if node == end:
-                return path
+                return True
             for adjacent in self.gdict.get(node, []):
                 new_path = list(path)
                 new_path.append(adjacent)
                 queue.append(new_path)
+        return False
 
-
-customDict = {"a": ["b", "c", 'z'],
-              "b": ["d", "g"],
-              "c": ["d", "e"],
-              "d": ["f"],
-              "e": ["f"],
-              "g": ["f"]
+customDict = {"a": ["c", "d", "b"],
+              "b": ["j"],
+              "c": ["g"],
+              "d": [],
+              "e": ["f", "a"],
+              "f": ["i"],
+              "g": ["d", "h"],
+              "h": [],
+              "i": [],
+              "j": []
               }
 
 g = Graph(customDict)
-print(g.bfs("a", "f"))
+print(g.checkRoute("a", "j"))
+print(g.checkRoute("a", "z"))

@@ -1,3 +1,4 @@
+
 class DisjointSet:
     def __init__(self, vertices):
         self.vertices = vertices
@@ -34,4 +35,4 @@ ds.union("D", "E")
 ds.union("E", "F")
 ds.union("A", "F")
 
-print(ds.find("F"))
+print(ds.find("E"))

@@ -39,4 +39,4 @@ my_tree = minimalTree(sortedArray)
 my_tree2 = minimalTree(sortedArray2)
 
 vertical_view(my_tree)
-vertical_view(my_tree2)
+# vertical_view(my_tree2)

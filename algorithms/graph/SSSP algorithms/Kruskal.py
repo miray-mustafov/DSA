@@ -1,5 +1,6 @@
 import DisjointSet as dst
 
+
 class Graph:
     def __init__(self, vertices):
         self.V = vertices
@@ -8,15 +9,19 @@ class Graph:
         self.MST = []
 
     def addEdge(self, s, d, w):
+        if s not in self.nodes or d not in self.nodes:
+            raise Exception(f'Vertex {s} or {d} does not exist')
         self.graph.append([s, d, w])
-    
+
     def addNode(self, value):
+        if value in self.nodes:
+            raise Exception(f'{value} already in the Graph')
         self.nodes.append(value)
-    
-    def printSolution(self,s,d,w):
+
+    def printSolution(self):
         for s, d, w in self.MST:
             print("%s - %s: %s" % (s, d, w))
-    
+
     def kruskalAlgo(self):
         i, e = 0, 0
         ds = dst.DisjointSet(self.nodes)
@@ -28,9 +33,10 @@ class Graph:
             y = ds.find(d)
             if x != y:
                 e += 1
-                self.MST.append([s,d,w])
-                ds.union(x,y)
-        self.printSolution(s,d,w)
+                self.MST.append([s, d, w])
+                ds.union(x, y)
+        self.printSolution()
+
 
 g = Graph(5)
 g.addNode("A")
@@ -54,5 +60,3 @@ g.addEdge("E", "A", 15)
 g.addEdge("E", "C", 20)
 
 g.kruskalAlgo()
-
-

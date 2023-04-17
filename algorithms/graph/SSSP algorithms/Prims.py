@@ -1,21 +1,23 @@
 import sys
+
+
 class Graph:
     def __init__(self, vertexNum, edges, nodes):
         self.edges = edges
         self.nodes = nodes
         self.vertexNum = vertexNum
         self.MST = []
-    
+
     def printSolution(self):
         print("Edge : Weight")
         for s, d, w in self.MST:
             print("%s -> %s: %s" % (s, d, w))
-    
+
     def primsAlgo(self):
-        visited = [0]*self.vertexNum
-        edgeNum=0
-        visited[0]=True
-        while edgeNum<self.vertexNum-1:
+        visited = [0] * self.vertexNum
+        edgeNum = 0
+        visited[0] = True
+        while edgeNum < self.vertexNum - 1:
             min = sys.maxsize
             for i in range(self.vertexNum):
                 if visited[i]:
@@ -31,12 +33,11 @@ class Graph:
         self.printSolution()
 
 
-
 edges = [[0, 10, 20, 0, 0],
-		[10, 0, 30, 5, 0],
-		[20, 30, 0, 15, 6],
-		[0, 5, 15, 0, 8],
-		[0, 0, 6, 8, 0]]
-nodes = ["A","B","C","D","E"]
+         [10, 0, 30, 5, 0],
+         [20, 30, 0, 15, 6],
+         [0, 5, 15, 0, 8],
+         [0, 0, 6, 8, 0]]
+nodes = ["A", "B", "C", "D", "E"]
 g = Graph(5, edges, nodes)
 g.primsAlgo()

@@ -10,4 +10,5 @@ def numberFactor(n):
         return subP1 + subP2 + subP3
 
 
-prcint(numberFactor(5))
+print(numberFactor(5))
+print(numberFactor(6))

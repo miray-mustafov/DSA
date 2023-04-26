@@ -1,7 +1,11 @@
 class Item:
-    def __init__(self, profit, weight):
+    def __init__(self, profit, weight, name):
         self.profit = profit
         self.weight = weight
+        self.name = name
+
+    def __repr__(self):
+        return str(f'{self.name} w{self.weight} p{self.profit}')
 
 
 def zoKnapsack(items, capacity, currentIndex):
@@ -18,10 +22,10 @@ def zoKnapsack(items, capacity, currentIndex):
         return 0
 
 
-mango = Item(31, 3)
-apple = Item(26, 1)
-orange = Item(17, 2)
-banana = Item(72, 5)
+mango = Item(31, 3, 'Mango')
+apple = Item(26, 1, 'Apple')
+orange = Item(17, 2, 'Orange')
+banana = Item(72, 5, 'Banana')
 
 items = [mango, apple, orange, banana]
 

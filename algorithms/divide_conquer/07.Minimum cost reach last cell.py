@@ -10,7 +10,7 @@ def findMinCost(twoDList, row, col):
 
 def my_find_mincost_route(twoDList, row, col):
     if row == -1 or col == -1:
-        return f'>100'
+        return f'>{2 ** 63-1}'
     if row == 0 and col == 0:
         return f'>{twoDList[0][0]}'
     op1 = my_find_mincost_route(twoDList, row - 1, col)

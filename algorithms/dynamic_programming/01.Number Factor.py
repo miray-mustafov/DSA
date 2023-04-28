@@ -1,10 +1,9 @@
 def num_fact(n, dp):
-    if n in dp:
-        return dp[n]
-    rec1 = num_fact(n - 1, dp)
-    rec2 = num_fact(n - 3, dp)
-    rec3 = num_fact(n - 4, dp)
-    dp[n] = rec1 + rec2 + rec3
+    if n not in dp:
+        rec1 = num_fact(n - 1, dp)
+        rec2 = num_fact(n - 3, dp)
+        rec3 = num_fact(n - 4, dp)
+        dp[n] = rec1 + rec2 + rec3
     return dp[n]
 
 

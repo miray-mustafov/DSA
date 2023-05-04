@@ -1,6 +1,7 @@
 from collections import deque, defaultdict
 from data_structures.queue.QueueLinkedList import Queue
 
+
 def preorder_traversal(tree_node):
     if not tree_node:
         return
@@ -15,6 +16,20 @@ def inorder_traversal(tree_node):
     inorder_traversal(tree_node.left)
     print(tree_node.data)
     inorder_traversal(tree_node.right)
+
+
+def inorder_iterative(tree_node):
+    res = []
+    stack = []
+    cur = tree_node
+    while cur or stack:
+        while cur:
+            stack.append(cur)
+            cur = cur.left
+        cur = stack.pop()
+        res.append(cur.val)
+        cur = cur.right
+    return res
 
 
 def postorder_traversal(tree_node):
@@ -37,7 +52,7 @@ def levelorder_traversal_defaultdict(tree_node):
         dfs(node.right, level + 1)
 
     dfs(tree_node, 0)
-    [print(key,':', [el for el in x]) for key, x in level_nodes_dict.items()]
+    [print(key, ':', [el for el in x]) for key, x in level_nodes_dict.items()]
 
 
 def levelorder_traversal(tree_node):
